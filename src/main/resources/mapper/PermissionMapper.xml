@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xidian.shop.mapper.PermissionMapper">
+    <select id="queryPermissionNameByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+        select
+            sys_permission.pname
+        from
+            sys_role_permission
+        inner join sys_permission on sys_permission.pid = sys_role_permission.pid
+        inner join sys_user_role on sys_role_permission.rid = sys_user_role.rid
+        where sys_user_role.username = #{username}
+    </select>
+</mapper>

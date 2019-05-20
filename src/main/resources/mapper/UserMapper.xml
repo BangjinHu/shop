@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xidian.shop.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="com.xidian.shop.entity.User">
+        <id property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="address" column="address"/>
+        <result property="balance" column="balance"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="point" column="point"/>
+        <result property="remark" column="remark"/>
+        <result property="slat" column="slat"/>
+        <result property="spc" column="spc"/>
+        <result property="telPhone" column="telPhone"/>
+        <result property="userName" column="username"/>
+        <result property="zipCode" column="zipCode"/>
+    </resultMap>
+    <select id="findAllUsers" resultMap="userResultMap">
+        SELECT
+            id,
+            account,
+            address,
+            password,
+            phone,
+            point,
+            remark,
+            spc,
+            username,
+            balance,
+            slat,
+            telPhone,
+            zipCode
+        FROM
+            t_user
+    </select>
+
+    <select id="findUserById" parameterType="java.lang.Integer" resultMap="userResultMap">
+        SELECT
+            id,
+            account,
+            address,
+            password,
+            phone,
+            point,
+            remark,
+            spc,
+            tel_phone,
+            zip_code,
+            username,
+            balance,
+            slat,
+            telPhone,
+            zipCode
+        FROM
+            t_user
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="findPassWordByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+            password
+        FROM
+            t_user
+        WHERE
+            username = #{username}
+    </select>
+
+    <select id="queryUserByUserName" parameterType="java.lang.String" resultMap="userResultMap">
+        select
+            id,
+            account,
+            address,
+            password,
+            phone
+        from
+            t_user
+        where
+            username = #{username}
+    </select>
+
+</mapper>
